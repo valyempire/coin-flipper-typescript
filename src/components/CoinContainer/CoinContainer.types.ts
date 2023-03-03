@@ -1,1 +1,4 @@
-export type ChoiceFace = "heads" | "tails";
+/**
+ * Defines types
+ */
+export type ChoiceFace = 'heads' | 'tails';
