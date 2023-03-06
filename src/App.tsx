@@ -1,7 +1,16 @@
-import React from 'react';
-import { CoinContainer } from './components/CoinContainer/CoinContainer';
-import './App.css';
+/**
+ * Imports component
+ */
+import { CoinContainer } from "./components/CoinContainer";
 
+/**
+ * Imports styles
+ */
+import "./App.css";
+
+/**
+ * Displays the component
+ */
 export const App = () => {
   return (
     <div className="App">

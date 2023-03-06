@@ -1,22 +1,42 @@
 import { useState } from "react";
-import { Coin } from "../Coin/Coin";
 
-import { ChoiceFace } from "./CoinContainer.types";
+/**
+ * Imports components
+ */
+import { Coin } from "../Coin";
+
+/**
+ * Imports hooks
+ */
 import { useUtils } from "../../hooks";
 
+/**
+ * Imports types
+ */
+import { ChoiceFace } from "./CoinContainer.types";
+
+/**
+ * Display the component
+ */
 export const CoinContainer: React.FC = () => {
-  const [currCoin, setCurrCoin] = useState<ChoiceFace>();
-  const [nFlips, setNflips] = useState(0);
-  const [nHeads, setNheads] = useState(0);
-  const [nTails, setNtails] = useState(0);
+  /**
+   * Initializes the state
+   */
+  const [currentCoin, setCurrentCoin] = useState<ChoiceFace>();
+  const [numOfFlips, setNumOfFlips] = useState(0);
+  const [headsCount, setHeadsCount] = useState(0);
+  const [tailsCount, setTailsCount] = useState(0);
   const { choice } = useUtils();
 
+  /**
+   * Chooses a random face
+   */
   const flipCoin = () => {
     const newCoin = choice(["heads", "tails"]);
-    setCurrCoin(newCoin);
-    setNflips(nFlips + 1);
-    setNheads(nHeads + (newCoin === "heads" ? 1 : 0));
-    setNtails(nTails + (newCoin === "tails" ? 1 : 0));
+    setCurrentCoin(newCoin);
+    setNumOfFlips(numOfFlips + 1);
+    setHeadsCount(headsCount + (newCoin === "heads" ? 1 : 0));
+    setTailsCount(tailsCount + (newCoin === "tails" ? 1 : 0));
   };
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     flipCoin();
@@ -25,11 +45,11 @@ export const CoinContainer: React.FC = () => {
   return (
     <div className="CoinContainer">
       <h2>Let's Flip A Coin!</h2>
-      {currCoin && <Coin coin={currCoin} />}
+      {currentCoin && <Coin coin={currentCoin} />}
       <button onClick={handleClick}>Flip Me!</button>
       <p>
-        Out of {nFlips} flips, there have been {nHeads} heads and {nTails}{" "}
-        tails.
+        Out of {numOfFlips} flips, there have been {headsCount} heads and{" "}
+        {tailsCount} tails.
       </p>
     </div>
   );
